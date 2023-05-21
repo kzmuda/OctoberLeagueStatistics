@@ -15,7 +15,10 @@ namespace Codecool.LeagueStatistics.Model
         /// <param name="teams"></param>
         /// <returns></returns>
         public static IEnumerable<Team> GetAllTeamsSorted(this IEnumerable<Team> teams)
-            => throw new NotImplementedException();
+        {
+            return teams.OrderByDescending(x => x.CurrentPoints)
+                .ThenByDescending(x => x.Players.Sum(z => z.Goals));
+        }
 
         /// <summary>
         ///     Gets all players from each team in one collection.
